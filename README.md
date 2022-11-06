@@ -1,23 +1,24 @@
-Python Robotics Simulator
-================================
+# Research Track 1 - Assignment 1
 
-This is a simple, portable robot simulator developed by [Student Robotics](https://studentrobotics.org).
-Some of the arenas and the exercises have been modified for the Research Track I course
+The aim of the assignment is to develop a Python script where the robot has to grab a silver token and bring it next to a gold token, then repeat this process for every silver box.
 
-Installing and running
-----------------------
+## Description
 
-The simulator requires a Python 2.7 installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
+In this simulation, we are given a mobile robot that is able to detect informations of the tokens in front of him with a certain angle. The robot is also able to grab/release a token and to move holding a token.
+The file [assignment.py](robot-sim/assignment.py)
 
-Once the dependencies are installed, simply run the `test.py` script to test out the simulator.
+## Installing and running
 
+The simulator requires a _Python 2.7_ installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
 
-Robot API
----------
+Once the dependencies are installed, simply run:
+`python2 run.py assignment.py`
+
+## Robot API
 
 The API for controlling a simulated robot is designed to be as similar as possible to the [SR API][sr-api].
 
-### Motors ###
+### Motors
 
 The simulated robot has two motors configured for skid steering, connected to a two-output [Motor Board](https://studentrobotics.org/docs/kit/motor_board). The left motor is connected to output `0` and the right motor to output `1`.
 
@@ -28,7 +29,7 @@ R.motors[0].m0.power = 25
 R.motors[0].m1.power = -25
 ```
 
-### The Grabber ###
+### The Grabber
 
 The robot is equipped with a grabber, capable of picking up a token which is in front of the robot and within 0.4 metres of the robot's centre. To pick up a token, call the `R.grab` method:
 
@@ -42,24 +43,24 @@ To drop the token, call the `R.release` method.
 
 Cable-tie flails are not implemented.
 
-### Vision ###
+### Vision
 
 To help the robot find tokens and navigate, each token has markers stuck to it, as does each wall. The `R.see` method returns a list of all the markers the robot can see, as `Marker` objects. The robot can only see markers which it is facing towards.
 
 Each `Marker` object has the following attributes:
 
-* `info`: a `MarkerInfo` object describing the marker itself. Has the following attributes:
-  * `code`: the numeric code of the marker.
-  * `marker_type`: the type of object the marker is attached to (either `MARKER_TOKEN_GOLD`, `MARKER_TOKEN_SILVER` or `MARKER_ARENA`).
-  * `offset`: offset of the numeric code of the marker from the lowest numbered marker of its type. For example, token number 3 has the code 43, but offset 3.
-  * `size`: the size that the marker would be in the real game, for compatibility with the SR API.
-* `centre`: the location of the marker in polar coordinates, as a `PolarCoord` object. Has the following attributes:
-  * `length`: the distance from the centre of the robot to the object (in metres).
-  * `rot_y`: rotation about the Y axis in degrees.
-* `dist`: an alias for `centre.length`
-* `res`: the value of the `res` parameter of `R.see`, for compatibility with the SR API.
-* `rot_y`: an alias for `centre.rot_y`
-* `timestamp`: the time at which the marker was seen (when `R.see` was called).
+- `info`: a `MarkerInfo` object describing the marker itself. Has the following attributes:
+  - `code`: the numeric code of the marker.
+  - `marker_type`: the type of object the marker is attached to (either `MARKER_TOKEN_GOLD`, `MARKER_TOKEN_SILVER` or `MARKER_ARENA`).
+  - `offset`: offset of the numeric code of the marker from the lowest numbered marker of its type. For example, token number 3 has the code 43, but offset 3.
+  - `size`: the size that the marker would be in the real game, for compatibility with the SR API.
+- `centre`: the location of the marker in polar coordinates, as a `PolarCoord` object. Has the following attributes:
+  - `length`: the distance from the centre of the robot to the object (in metres).
+  - `rot_y`: rotation about the Y axis in degrees.
+- `dist`: an alias for `centre.length`
+- `res`: the value of the `res` parameter of `R.see`, for compatibility with the SR API.
+- `rot_y`: an alias for `centre.rot_y`
+- `timestamp`: the time at which the marker was seen (when `R.see` was called).
 
 For example, the following code lists all of the markers the robot can see:
 
