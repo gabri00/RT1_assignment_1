@@ -25,9 +25,34 @@ Further instructions on the robot API ca be found in the [README](robot-sim/READ
 
 #### Functions description
 
-- Find a token:
+- Find token:
   ```python
   def find_token(token_type, visited_tokens)
   ```
+  Scans all tokens of type _token_type_ in view and gathers informations on the closest token. Ignores all tokens in the _visited_tokens_ list. It return the distance, the rotation angle and the code of the token with respect to the robot.
+  <br>
 
-## Results
+- Update position:
+  ```python
+  def update_pos(target_code)
+  ```
+  Returns the distance and the angle relative to the token of code _target_code_.
+  <br>
+
+- Bring a (silver) token to a checkpoint (gold token):
+  ```python
+  def bring_to_checkpoint(token_code)
+  ```
+  Delivers the silver token with code _token_code_ the the closest gold token in view.
+  <br>
+
+- Collect silver tokens:
+  ```python
+  def collect_silver_tokens(n_tokens)
+  ```
+  Search and deliver all _n_tokens_ silver tokens.
+
+## Possible improvements
+- Make the robot's actions smoother and faster;
+- Optimize the robot's search path of the tokens;
+- Show robot's view cone and detections lines.
