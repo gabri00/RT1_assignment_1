@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import sys
 import time
 from sr.robot import *
 
@@ -154,5 +155,10 @@ def collect_silver_tokens(n_tokens):
 
 
 # collect 6 silver tokens and take every token near to a gold token
+start_time = time.time()
+
 collect_silver_tokens(6)
 print('All tokens delivered successfully!')
+print('Execution time: ' + str(time.time() - start_time))
+
+sys.exit(0)

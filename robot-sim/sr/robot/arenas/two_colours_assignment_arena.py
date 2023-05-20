@@ -1,6 +1,7 @@
 from __future__ import division
 
 from math import cos, pi, sin
+import random
 
 import pygame
 from pygame.rect import Rect
@@ -53,8 +54,7 @@ class TwoColoursAssignmentArena(Arena):
     def __init__(self, objects=None, wall_markers=False):
         super(TwoColoursAssignmentArena, self).__init__(objects, wall_markers)
 
-        def place_token_circle(radius, number_offset=0, angle_offset=0.25 * pi,
-                               rotate_silvers=0.0):
+        def place_token_circle(radius, number_offset=0, angle_offset=0.25 * pi, rotate_silvers=0.0):
             for i in range(TOKENS_PER_CIRCLE):
                 if radius == INNER_CIRCLE_RADIUS:
                     token_type = SilverToken
@@ -64,13 +64,16 @@ class TwoColoursAssignmentArena(Arena):
                     rotation_amount = 0
                 token = token_type(self, number_offset + i)
                 angle = angle_offset + (2 * pi / TOKENS_PER_CIRCLE) * i
-                token.location = (cos(angle) * radius, sin(angle) * radius)
+                rand_dist = 1
+                if radius == OUTER_CIRCLE_RADIUS:
+                	rand_dist = random.uniform(0.8, 1.2)
+                token.location = (cos(angle) * radius * rand_dist, sin(angle) * radius * rand_dist)
                 token.heading = rotation_amount
                 self.objects.append(token)
 
         place_token_circle(INNER_CIRCLE_RADIUS)
         place_token_circle(OUTER_CIRCLE_RADIUS, number_offset=TOKENS_PER_CIRCLE,
-                           angle_offset=1.5 * pi, rotate_silvers=pi / 4)
+                           angle_offset=1.5 * pi  * random.uniform(0.4, 1.2), rotate_silvers=pi / 4)
 
     def draw_background(self, surface, display):
 
