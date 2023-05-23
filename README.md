@@ -21,7 +21,7 @@ Further instructions on the robot API ca be found in the [README](robot-sim/READ
 
 ## Code description
 
-![Flowchart](robot-sim/flowchart.png "flowchart of the code")
+![Flowchart](robot-sim/images/flowchart.png "flowchart of the code")
 
 #### Functions description
 
