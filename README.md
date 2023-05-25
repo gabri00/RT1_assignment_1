@@ -6,6 +6,8 @@ In this simulation, we are given a mobile robot that is able to detect informati
 The aim of the assignment is to develop a Python script to make the robot grab a silver token and bring it next to a gold token, then repeat this process for every silver box.
 The code for the assignment can be found in the file [assignment.py](robot-sim/assignment.py).
 
+**Report of the assignment:** [report](report.pdf)
+
 ## Installing and running
 
 The simulator requires a _Python 2.7_ installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
@@ -13,6 +15,9 @@ All the libraries should be easy to install using `pip`.
 
 Once the dependencies are installed, you can run:
 `python2 run.py assignment.py`
+
+To run the statistical analysis open the [statistics notebook](robot-sim/statistics.ipynb) in *Jupyter Notebook* or in *Jupyter Lab* and run all cells.
+The data used for the analysis are in a *csv* table: [results](robot-sim/results.csv).
 
 ## Robot API
 
