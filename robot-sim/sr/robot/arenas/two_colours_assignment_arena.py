@@ -64,7 +64,10 @@ class TwoColoursAssignmentArena(Arena):
                     rotation_amount = 0
                 token = token_type(self, number_offset + i)
                 angle = angle_offset + (2 * pi / TOKENS_PER_CIRCLE) * i
-                token.location = (cos(angle) * radius, sin(angle) * radius)
+                rand_dist = 1
+                if radius == OUTER_CIRCLE_RADIUS:
+                	rand_dist = random.uniform(0.8, 1.2)
+                token.location = (cos(angle) * radius * rand_dist, sin(angle) * radius * rand_dist)
                 token.heading = rotation_amount
                 self.objects.append(token)
 
